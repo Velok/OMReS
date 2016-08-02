@@ -1,0 +1,45 @@
+body {
+  padding-top: 70px;
+}
+
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus {
+  background-color: transparent;
+  color: #999999;
+}
+
+.cst-padding {
+  padding-right: 6px;
+}
+
+.cst-top-buffer {
+  margin-top: 20px;
+}
+
+.cst-output-label {
+  word-wrap: break-word;
+  font-size: 1.4em;
+  font-weight: 500;
+}
+
+.cst-input-label {
+  word-wrap: break-word;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.cst-input-value {
+  margin-right: 4px;
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
+.cst-heading-label {
+  word-wrap: break-word;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.hidden {
+  display: none;
+}

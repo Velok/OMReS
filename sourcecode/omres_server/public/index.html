@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link rel="stylesheet" href="bootstrap-switch/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" href="app.css">
+    <title>Open Modular Remote System</title>
+  </head>
+  <body>
+    <div id="channel-pane" class="container hidden">
+      <div class="navbar navbar-fixed-top navbar-inverse"><span class="navbar-brand">OMReS</span>
+        <div class="cst-padding pull-right">
+          <button type="button" id="channel-nav-settings-button" class="btn btn-default navbar-btn">Einstellungen</button>
+          <button type="button" id="channel-nav-logout-button" class="btn btn-default navbar-btn">Logout</button>
+        </div>
+      </div>
+      <ul class="list-group">
+        <li id="channel-output1-row" class="list-group-item">
+          <div class="row">
+            <div class="col-xs-10"><span id="channel-output1-label" class="cst-output-label"></span></div>
+            <div class="col-xs-2">
+              <button id="channel-output1-button" type="button" data-channel-id='1' class="btn btn-default pull-right channel-output-btn"></button>
+            </div>
+          </div>
+        </li>
+        <li id="channel-output2-row" class="list-group-item">
+          <div class="row">
+            <div class="col-xs-10"><span id="channel-output2-label" class="cst-output-label"></span></div>
+            <div class="col-xs-2">
+              <button id="channel-output2-button" type="button" data-channel-id='2' class="btn btn-default pull-right channel-output-btn"></button>
+            </div>
+          </div>
+        </li>
+        <li id="channel-output3-row" class="list-group-item">
+          <div class="row">
+            <div class="col-xs-10"><span id="channel-output3-label" class="cst-output-label"></span></div>
+            <div class="col-xs-2">
+              <button id="channel-output3-button" type="button" data-channel-id='3' class="btn btn-default pull-right channel-output-btn"></button>
+            </div>
+          </div>
+        </li>
+        <li id="channel-output4-row" class="list-group-item">
+          <div class="row">
+            <div class="col-xs-10"><span id="channel-output4-label" class="cst-output-label"></span></div>
+            <div class="col-xs-2">
+              <button id="channel-output4-button" type="button" data-channel-id='4' class="btn btn-default pull-right channel-output-btn"></button>
+            </div>
+          </div>
+        </li>
+        <li id="channel-output5-row" class="list-group-item">
+          <div class="row">
+            <div class="col-xs-10"><span id="channel-output5-label" class="cst-output-label"></span></div>
+            <div class="col-xs-2">
+              <button id="channel-output5-button" type="button" data-channel-id='5' class="btn btn-default pull-right channel-output-btn"></button>
+            </div>
+          </div>
+        </li>
+        <li id="channel-output6-row" class="list-group-item">
+          <div class="row">
+            <div class="col-xs-10"><span id="channel-output6-label" class="cst-output-label"></span></div>
+            <div class="col-xs-2">
+              <button id="channel-output6-button" type="button" data-channel-id='6' class="btn btn-default pull-right channel-output-btn"></button>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="row cst-top-buffer"></div>
+      <ul class="list-group">
+        <li id="channel-input1-row" class="list-group-item">
+          <div class="row">
+            <div class="col-xs-10">
+              <div class="row">
+                <div class="col-xs-12"><span id="channel-input1-label" class="cst-input-label"></span></div>
+              </div><span id="channel-input1-value" class="cst-input-value"></span><span id="channel-input1-unit" class="cst-input-label"></span>
+            </div>
+            <div class="col-xs-2">
+              <button id="channel-input1-button" type="button" class="btn btn-default btn-sm pull-right"><span class="glyphicon glyphicon-list"></span></button>
+            </div>
+          </div>
+        </li>
+        <li id="channel-input2-row" class="list-group-item">
+          <div class="row">
+            <div class="col-xs-10">
+              <div class="row">
+                <div class="col-xs-12"><span id="channel-input2-label" class="cst-input-label"></span></div>
+              </div><span id="channel-input2-value" class="cst-input-value"></span><span id="channel-input2-unit" class="cst-input-label"></span>
+            </div>
+            <div class="col-xs-2">
+              <button id="channel-input2-button" type="button" class="btn btn-default btn-sm pull-right"><span class="glyphicon glyphicon-list"></span></button>
+            </div>
+          </div>
+        </li>
+        <li id="channel-input3-row" class="list-group-item">
+          <div class="row">
+            <div class="col-xs-10">
+              <div class="row">
+                <div class="col-xs-12"><span id="channel-input3-label" class="cst-input-label"></span></div>
+              </div><span id="channel-input3-value" class="cst-input-value"></span><span id="channel-input3-unit" class="cst-input-label"></span>
+            </div>
+            <div class="col-xs-2">
+              <button id="channel-input3-button" type="button" class="btn btn-default btn-sm pull-right"><span class="glyphicon glyphicon-list"></span></button>
+            </div>
+          </div>
+        </li>
+        <li id="channel-input4-row" class="list-group-item">
+          <div class="row">
+            <div class="col-xs-10">
+              <div class="row">
+                <div class="col-xs-12"><span id="channel-input4-label" class="cst-input-label"></span></div>
+              </div><span id="channel-input4-value" class="cst-input-value"></span><span id="channel-input4-unit" class="cst-input-label"></span>
+            </div>
+            <div class="col-xs-2">
+              <button id="channel-input4-button" type="button" class="btn btn-default btn-sm pull-right"><span class="glyphicon glyphicon-list"></span></button>
+            </div>
+          </div>
+        </li>
+        <li id="channel-input5-row" class="list-group-item">
+          <div class="row">
+            <div class="col-xs-10">
+              <div class="row">
+                <div class="col-xs-12"><span id="channel-input5-label" class="cst-input-label"></span></div>
+              </div><span id="channel-input5-value" class="cst-input-value"></span><span id="channel-input5-unit" class="cst-input-label"></span>
+            </div>
+            <div class="col-xs-2">
+              <button id="channel-input5-button" type="button" class="btn btn-default btn-sm pull-right"><span class="glyphicon glyphicon-list"></span></button>
+            </div>
+          </div>
+        </li>
+        <li id="channel-input6-row" class="list-group-item">
+          <div class="row">
+            <div class="col-xs-10">
+              <div class="row">
+                <div class="col-xs-12"><span id="channel-input6-label" class="cst-input-label"></span></div>
+              </div><span id="channel-input6-value" class="cst-input-value"></span><span id="channel-input6-unit" class="cst-input-label"></span>
+            </div>
+            <div class="col-xs-2">
+              <button id="channel-input6-button" type="button" class="btn btn-default btn-sm pull-right"><span class="glyphicon glyphicon-list"></span></button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div id="start-pane" class="container hidden">
+      <div class="navbar navbar-fixed-top navbar-inverse"><span class="navbar-brand">OMReS</span>
+        <div class="cst-padding pull-right">
+          <button type="button" id="start-nav-login-button" class="btn btn-default navbar-btn">Login</button>
+        </div>
+      </div>
+      <div class="jumbotron">
+        <h3>Um was gehts hier?</h3>
+        <p>Dies ist die Benutzeroberfläche von OMReS. Mit dem <strong>O</strong>pen <strong>M</strong>odular <strong>Re</strong>mote <strong>S</strong>ystem Lassen sich entfernte elektrische Geräte überwachen und steuern. ...</p>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading"><span class="cst-heading-label">Registrieren</span></div>
+        <div class="panel-body">
+          <form id="register-form">
+            <div class="form-group">
+              <label class="sr-only">E-Mail Adresse</label>
+              <input type="email" placeholder="E-Mail" autocomplete="off" id="start-register-email-field" class="form-control">
+            </div>
+            <div class="form-group">
+              <label class="sr-only">Passwort</label>
+              <input type="password" placeholder="Passwort" autocomplete="off" id="start-register-password-field" class="form-control">
+            </div>
+            <button type="submit" id="start-register-submit-button" class="btn btn-default">registrieren </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="login-pane" class="container hidden">
+      <div class="navbar navbar-fixed-top navbar-inverse"><span class="navbar-brand">Login</span>
+        <div class="cst-padding pull-right">
+          <button type="button" id="login-nav-cancel-button" class="btn btn-default navbar-btn">Abbrechen</button>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <form id="login-form">
+            <div class="form-group">
+              <label class="sr-only">E-Mail Adresse</label>
+              <input required type="email" placeholder="E-Mail Adresse" id="login-email-field" class="form-control">
+            </div>
+            <div class="form-group">
+              <label class="sr-only">Passwort</label>
+              <input required type="password" placeholder="Passwort" pattern=".{2,}" id="login-password-field" class="form-control">
+            </div>
+            <button type="submit" id="login-submit-button" class="btn btn-default">einloggen         </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="settings-pane" class="container hidden">
+      <div class="navbar navbar-fixed-top navbar-inverse"><span class="navbar-brand">Einstellungen</span>
+        <div class="cst-padding pull-right">
+          <button type="button" id="settings-nav-ok-button" class="btn btn-default navbar-btn">Ok</button>
+          <button type="button" id="settings-nav-cancel-button" class="btn btn-default navbar-btn">Abbrechen</button>
+        </div>
+      </div>
+      <button type="button" id="settings-channel-button" class="btn btn-default btn-lg btn-block">Kanäle</button>
+      <button type="button" id="settings-device-button" class="btn btn-default btn-lg btn-block">Gerät</button>
+      <button type="button" id="settings-account-button" class="btn btn-default btn-lg btn-block">Account</button>
+    </div>
+    <div id="channelsettings-pane" class="container hidden">
+      <div class="navbar navbar-fixed-top navbar-inverse"><span class="navbar-brand">Einstellungen</span>
+        <div class="cst-padding pull-right">
+          <button type="button" id="channelsettings-nav-ok-button" class="btn btn-default navbar-btn">Ok</button>
+          <button type="button" id="channelsettings-nav-cancel-button" class="btn btn-default navbar-btn">Abbrechen  </button>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading"><span class="cst-heading-label">Kanal 1</span></div>
+        <div class="panel-body">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-8 col-xs-12">
+                <input id="channelsettings-channel1-active-checkbox" type="checkbox" data-label-text="Anzeigen" data-off-text="Nein" data-on-text="Ja" class="bs-switch form-control">
+                <button type="button" class="channelsettings-active-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Beschriftung Ausgang</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel1-outputlabel-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-outputlabel-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Beschriftung Eingang</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel1-inputlabel-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-inputlabel-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Beschriftung Einheit</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel1-unitname-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-unitname-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Schaltmodus</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel1-triggermode-value" type="number" min="0" max="7" step="1" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-triggermode-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">unterer Grenzwert</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel1-lowtrigger-value" type="number" min="0" max="1023" step="1" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-lowtriggervalue-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">oberer Grenzwert</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel1-hightrigger-value" type="number" min="0" max="1023" step="1" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-hightriggervalue-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Berechnungsfaktor</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel1-unitfactor-value" type="number" min="0" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-unitfactor-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Berechnungs-Offset</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel1-unitoffset-value" type="number" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-unitoffset-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading"><span class="cst-heading-label">Kanal 2</span></div>
+        <div class="panel-body">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-8 col-xs-12">
+                <input id="channelsettings-channel2-active-checkbox" type="checkbox" data-label-text="Anzeigen" data-off-text="Nein" data-on-text="Ja" class="bs-switch form-control">
+                <button type="button" class="channelsettings-active-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Beschriftung Ausgang</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel2-outputlabel-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-outputlabel-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Beschriftung Eingang</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel2-inputlabel-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-inputlabel-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Beschriftung Einheit</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel2-unitname-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-unitname-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Schaltmodus</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel2-triggermode-value" type="number" min="0" max="7" step="1" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-triggermode-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">unterer Grenzwert</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel2-lowtrigger-value" type="number" min="0" max="1023" step="1" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-lowtriggervalue-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">oberer Grenzwert</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel2-hightrigger-value" type="number" min="0" max="1023" step="1" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-hightriggervalue-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Berechnungsfaktor</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel2-unitfactor-value" type="number" min="0" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-unitfactor-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Berechnungs-Offset</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel2-unitoffset-value" type="number" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-unitoffset-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading"><span class="cst-heading-label">Kanal 3</span></div>
+        <div class="panel-body">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-8 col-xs-12">
+                <input id="channelsettings-channel3-active-checkbox" type="checkbox" data-label-text="Anzeigen" data-off-text="Nein" data-on-text="Ja" class="bs-switch form-control">
+                <button type="button" class="channelsettings-active-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Beschriftung Ausgang</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel3-outputlabel-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-outputlabel-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Beschriftung Eingang</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel3-inputlabel-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-inputlabel-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Beschriftung Einheit</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel3-unitname-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-unitname-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Schaltmodus</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel3-triggermode-value" type="number" min="0" max="7" step="1" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-triggermode-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">unterer Grenzwert</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel3-lowtrigger-value" type="number" min="0" max="1023" step="1" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-lowtriggervalue-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">oberer Grenzwert</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel3-hightrigger-value" type="number" min="0" max="1023" step="1" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-hightriggervalue-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Berechnungsfaktor</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel3-unitfactor-value" type="number" min="0" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-unitfactor-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Berechnungs-Offset</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel3-unitoffset-value" type="number" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-unitoffset-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading"><span class="cst-heading-label">Kanal 4</span></div>
+        <div class="panel-body">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-8 col-xs-12">
+                <input id="channelsettings-channel4-active-checkbox" type="checkbox" data-label-text="Anzeigen" data-off-text="Nein" data-on-text="Ja" class="bs-switch form-control">
+                <button type="button" class="channelsettings-active-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Beschriftung Ausgang</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel4-outputlabel-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-outputlabel-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Beschriftung Eingang</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel4-inputlabel-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-inputlabel-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Beschriftung Einheit</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel4-unitname-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-unitname-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Schaltmodus</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel4-triggermode-value" type="number" min="0" max="7" step="1" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-triggermode-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">unterer Grenzwert</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel4-lowtrigger-value" type="number" min="0" max="1023" step="1" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-lowtriggervalue-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">oberer Grenzwert</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel4-hightrigger-value" type="number" min="0" max="1023" step="1" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-hightriggervalue-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Berechnungsfaktor</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel4-unitfactor-value" type="number" min="0" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-unitfactor-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Berechnungs-Offset</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel4-unitoffset-value" type="number" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-unitoffset-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading"><span class="cst-heading-label">Kanal 5</span></div>
+        <div class="panel-body">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-8 col-xs-12">
+                <input id="channelsettings-channel5-active-checkbox" type="checkbox" data-label-text="Anzeigen" data-off-text="Nein" data-on-text="Ja" class="bs-switch form-control">
+                <button type="button" class="channelsettings-active-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Beschriftung Ausgang</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel5-outputlabel-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-outputlabel-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Beschriftung Eingang</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel5-inputlabel-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-inputlabel-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Beschriftung Einheit</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel5-unitname-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-unitname-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Schaltmodus</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel5-triggermode-value" type="number" min="0" max="7" step="1" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-triggermode-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">unterer Grenzwert</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel5-lowtrigger-value" type="number" min="0" max="1023" step="1" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-lowtriggervalue-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">oberer Grenzwert</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel5-hightrigger-value" type="number" min="0" max="1023" step="1" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-hightriggervalue-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Berechnungsfaktor</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel5-unitfactor-value" type="number" min="0" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-unitfactor-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Berechnungs-Offset</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel5-unitoffset-value" type="number" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-unitoffset-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading"><span class="cst-heading-label">Kanal 6</span></div>
+        <div class="panel-body">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-8 col-xs-12">
+                <input id="channelsettings-channel6-active-checkbox" type="checkbox" data-label-text="Anzeigen" data-off-text="Nein" data-on-text="Ja" class="bs-switch form-control">
+                <button type="button" class="channelsettings-active-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Beschriftung Ausgang</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel6-outputlabel-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-outputlabel-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Beschriftung Eingang</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel6-inputlabel-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-inputlabel-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Beschriftung Einheit</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel6-unitname-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-unitname-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Schaltmodus</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel6-triggermode-value" type="number" min="0" max="7" step="1" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-triggermode-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">unterer Grenzwert</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel6-lowtrigger-value" type="number" min="0" max="1023" step="1" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-lowtriggervalue-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">oberer Grenzwert</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel6-hightrigger-value" type="number" min="0" max="1023" step="1" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-hightriggervalue-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Berechnungsfaktor</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel6-unitfactor-value" type="number" min="0" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-unitfactor-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Berechnungs-Offset</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="channelsettings-channel6-unitoffset-value" type="number" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="channelsettings-unitoffset-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="devicesettings-pane" class="container hidden">
+      <div class="navbar navbar-fixed-top navbar-inverse"><span class="navbar-brand">Einstellungen</span>
+        <div class="cst-padding pull-right">
+          <button type="button" id="devicesettings-nav-ok-button" class="btn btn-default navbar-btn">Ok</button>
+          <button type="button" id="devicesettings-nav-cancel-button" class="btn btn-default navbar-btn">Abbrechen  </button>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading"><span class="cst-heading-label">Geräteeinstellungen</span></div>
+        <div class="panel-body">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Sendeintervall</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="devicesettings-sendinterval-value" type="number" min="3000" max="4294967295" step="1" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="devicesettings-sendinterval-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Fehlerintervall</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="devicesettings-errorinterval-value" type="number" min="4000" max="4294967295" step="1" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="devicesettings-errorinterval-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Fehlversuche</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input id="devicesettings-errorcount-value" type="number" min="4" step="1" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="devicesettings-errorcount-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-8 col-xs-12">
+                <input id="devicesettings-notifications-checkbox" type="checkbox" data-label-text="Benachrichtigungen" data-off-text="Nein" data-on-text="Ja" class="bs-switch form-control">
+                <button type="button" class="devicesettings-notifications-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Gerätemodell</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <select disabled id="devicesettings-devicemodel-value" class="form-control">
+                    <option>Arduino Uno</option>
+                    <option>Arduino Mega</option>
+                  </select>
+                  <div class="input-group-btn">
+                    <button type="button" class="devicesettings-devicemodel-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Übertragungsmodul</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <select disabled id="devicesettings-deviceshield-value" class="form-control">
+                    <option>Ethernet Shield</option>
+                    <option>GSM Shield</option>
+                  </select>
+                  <div class="input-group-btn">
+                    <button type="button" class="devicesettings-deviceshield-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">GPRS APN</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input disabled id="devicesettings-gprsapn-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="devicesettings-gprsapn-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">GPRS Login</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input disabled id="devicesettings-gprslogin-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="devicesettings-gprslogin-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">GPRS Passwort</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input disabled id="devicesettings-gprspassword-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="devicesettings-gprspassword-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">PIN Simkarte</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input disabled id="devicesettings-simpin-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="devicesettings-simpin-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Mac Adresse</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input disabled id="devicesettings-macadress-value" type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <button type="button" class="devicesettings-macadress-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-8 col-xs-12">
+                <button id="devicesettings-changekey-button" type="button" class="btn btn-default"><span>Schlüssel ändern/anzeigen</span></button>
+                <button type="button" class="devicesettings-changekey-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-8 col-xs-12">
+                <button disabled id="devicesettings-showsketch-button" type="button" class="btn btn-default"><span>Sketch anzeigen</span></button>
+                <button type="button" class="devicesettings-showsketch-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="accountsettings-pane" class="container hidden">
+      <div class="navbar navbar-fixed-top navbar-inverse"><span class="navbar-brand">Einstellungen</span>
+        <div class="cst-padding pull-right">
+          <button type="button" id="accountsettings-nav-ok-button" class="btn btn-default navbar-btn">Ok</button>
+          <button type="button" id="accountsettings-nav-cancel-button" class="btn btn-default navbar-btn">Abbrechen  </button>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading"><span class="cst-heading-label">Accounteinstellungen</span></div>
+        <div class="panel-body">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label class="col-sm-4 control-label">E-Mail Adresse</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input disabled id="accountsettings-email-value" type="email" class="form-control">
+                  <div class="input-group-btn">
+                    <button disabled type="button" class="accountsettings-email-change-button btn btn-default"><span>ändern</span></button>
+                    <button type="button" class="accountsettings-email-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Passwort</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input disabled id="accountsettings-changepassword-value" type="password" class="form-control">
+                  <div class="input-group-btn">
+                    <button disabled type="button" class="accountsettings-changepassword-change-button btn btn-default"><span>ändern</span></button>
+                    <button type="button" class="accountsettings-changepassword-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-8 col-xs-12">
+                <button disabled id="devicesettings-deleteaccount-button" type="button" class="btn btn-default"><span>Account löschen</span></button>
+                <button type="button" class="devicesettings-deleteaccount-info-button btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="socket-io/socket.io-1.4.5.js"></script>
+    <script src="bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <script src="libs.js"></script>
+    <script src="templates.js"></script>
+    <script src="app.js"></script>
+    <script>require('scripts/app');</script>
+  </body>
+</html>

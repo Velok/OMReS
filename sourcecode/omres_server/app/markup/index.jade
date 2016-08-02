@@ -1,0 +1,347 @@
+- var channels = 6
+
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+    //- STYLESHEETS
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css", integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7", crossorigin="anonymous")
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css", integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r", crossorigin="anonymous")
+    link(rel="stylesheet", href="bootstrap-switch/css/bootstrap-switch.min.css")
+    link(rel="stylesheet", href="app.css")
+    //- CONTENT
+    title Open Modular Remote System
+  body
+    .container.hidden#channel-pane
+      .navbar.navbar-fixed-top.navbar-inverse
+        span.navbar-brand OMReS
+        div.cst-padding.pull-right
+          button(type = 'button')#channel-nav-settings-button.btn.btn-default.navbar-btn Einstellungen
+          button(type = 'button')#channel-nav-logout-button.btn.btn-default.navbar-btn Logout
+      ul.list-group
+        - for(var i = 1; i <= channels; i++) {
+        li(id = 'channel-output'+i+'-row').list-group-item
+          .row
+            .col-xs-10
+              span(id = 'channel-output'+i+'-label').cst-output-label
+            .col-xs-2
+              button(id = 'channel-output'+i+'-button', type = 'button', data-channel-id = i).btn.btn-default.pull-right.channel-output-btn
+        - }
+          
+      .row.cst-top-buffer
+      
+      ul.list-group
+        - for(var i = 1; i <= channels; i++) {
+        li(id = 'channel-input'+i+'-row').list-group-item
+          .row
+            .col-xs-10
+              .row
+                .col-xs-12
+                  span(id = 'channel-input'+i+'-label').cst-input-label
+              span(id = 'channel-input'+i+'-value').cst-input-value
+              span(id = 'channel-input'+i+'-unit').cst-input-label
+            .col-xs-2
+              button(id = 'channel-input'+i+'-button', type = 'button').btn.btn-default.btn-sm.pull-right
+                span.glyphicon.glyphicon-list
+        - }
+    
+    .container.hidden#start-pane
+      .navbar.navbar-fixed-top.navbar-inverse
+        span.navbar-brand OMReS
+        div.cst-padding.pull-right
+          button(type = 'button')#start-nav-login-button.btn.btn-default.navbar-btn Login
+      .jumbotron
+        h3 Um was gehts hier?
+        p Dies ist die Benutzeroberfläche von OMReS. Mit dem #[strong O]pen #[strong M]odular #[strong Re]mote #[strong S]ystem Lassen sich entfernte elektrische Geräte überwachen und steuern. ...
+      
+      .panel.panel-default
+        .panel-heading
+          span.cst-heading-label Registrieren
+        .panel-body
+          form#register-form
+            .form-group
+              label.sr-only E-Mail Adresse
+              input(type = 'email', placeholder = 'E-Mail', autocomplete = 'off')#start-register-email-field.form-control
+            .form-group
+              label.sr-only Passwort
+              input(type = 'password', placeholder = 'Passwort', autocomplete = 'off')#start-register-password-field.form-control
+            button(type = 'submit')#start-register-submit-button.btn.btn-default registrieren 
+
+    .container.hidden#login-pane
+      .navbar.navbar-fixed-top.navbar-inverse
+        span.navbar-brand Login
+        div.cst-padding.pull-right
+          button(type = 'button')#login-nav-cancel-button.btn.btn-default.navbar-btn Abbrechen
+      .panel.panel-default
+        .panel-body
+          form#login-form
+            .form-group
+              label.sr-only E-Mail Adresse
+              input(required type = 'email', placeholder = 'E-Mail Adresse')#login-email-field.form-control
+            .form-group
+              label.sr-only Passwort
+              input(required type = 'password', placeholder = 'Passwort', pattern='.{2,}')#login-password-field.form-control
+            button(type = 'submit')#login-submit-button.btn.btn-default einloggen         
+    
+    .container.hidden#settings-pane
+      .navbar.navbar-fixed-top.navbar-inverse
+        span.navbar-brand Einstellungen
+        div.cst-padding.pull-right
+          button(type = 'button')#settings-nav-ok-button.btn.btn-default.navbar-btn Ok
+          button(type = 'button')#settings-nav-cancel-button.btn.btn-default.navbar-btn Abbrechen
+      button(type = 'button')#settings-channel-button.btn.btn-default.btn-lg.btn-block Kanäle
+      button(type = 'button')#settings-device-button.btn.btn-default.btn-lg.btn-block Gerät
+      button(type = 'button')#settings-account-button.btn.btn-default.btn-lg.btn-block Account
+      
+    .container.hidden#channelsettings-pane
+      .navbar.navbar-fixed-top.navbar-inverse
+        span.navbar-brand Einstellungen
+        div.cst-padding.pull-right
+          button(type = 'button')#channelsettings-nav-ok-button.btn.btn-default.navbar-btn Ok
+          button(type = 'button')#channelsettings-nav-cancel-button.btn.btn-default.navbar-btn Abbrechen  
+      - for(var i = 1; i <= channels; i++) {    
+      .panel.panel-default
+        .panel-heading
+          span.cst-heading-label Kanal #{i}
+        .panel-body
+          form.form-horizontal
+            .form-group
+              .col-sm-4
+              .col-sm-8.col-xs-12
+                input(id = 'channelsettings-channel'+i+'-active-checkbox', type = 'checkbox', data-label-text = 'Anzeigen', data-off-text = 'Nein', data-on-text = 'Ja').bs-switch.form-control
+                button(class = 'channelsettings-active-info-button', type = 'button').btn.btn-default
+                  span.glyphicon.glyphicon-info-sign
+            .form-group
+              label.col-sm-4.control-label Beschriftung Ausgang
+              .col-sm-8
+                .input-group
+                  input(id = 'channelsettings-channel'+i+'-outputlabel-value', type = 'text').form-control
+                  .input-group-btn
+                    button(class = 'channelsettings-outputlabel-info-button', type = 'button').btn.btn-default
+                      span.glyphicon.glyphicon-info-sign
+            .form-group
+              label.col-sm-4.control-label Beschriftung Eingang
+              .col-sm-8
+                .input-group
+                  input(id = 'channelsettings-channel'+i+'-inputlabel-value', type = 'text').form-control
+                  .input-group-btn
+                    button(class = 'channelsettings-inputlabel-info-button', type = 'button').btn.btn-default
+                      span.glyphicon.glyphicon-info-sign
+            .form-group
+              label.col-sm-4.control-label Beschriftung Einheit
+              .col-sm-8
+                .input-group
+                  input(id = 'channelsettings-channel'+i+'-unitname-value', type = 'text').form-control
+                  .input-group-btn
+                    button(class = 'channelsettings-unitname-info-button', type = 'button').btn.btn-default
+                      span.glyphicon.glyphicon-info-sign
+            .form-group
+              label.col-sm-4.control-label Schaltmodus
+              .col-sm-8
+                .input-group
+                  input(id = 'channelsettings-channel'+i+'-triggermode-value', type = 'number', min = '0', max = '7', step = '1').form-control
+                  .input-group-btn
+                    button(class = 'channelsettings-triggermode-info-button', type = 'button').btn.btn-default
+                      span.glyphicon.glyphicon-info-sign
+            .form-group
+              label.col-sm-4.control-label unterer Grenzwert
+              .col-sm-8
+                .input-group
+                  input(id = 'channelsettings-channel'+i+'-lowtrigger-value', type = 'number', min = '0', max = '1023', step = '1').form-control
+                  .input-group-btn
+                    button(class = 'channelsettings-lowtriggervalue-info-button', type = 'button').btn.btn-default
+                      span.glyphicon.glyphicon-info-sign
+            .form-group
+              label.col-sm-4.control-label oberer Grenzwert
+              .col-sm-8
+                .input-group
+                  input(id = 'channelsettings-channel'+i+'-hightrigger-value', type = 'number', min = '0', max = '1023', step = '1').form-control
+                  .input-group-btn
+                    button(class = 'channelsettings-hightriggervalue-info-button', type = 'button').btn.btn-default
+                      span.glyphicon.glyphicon-info-sign
+            .form-group
+              label.col-sm-4.control-label Berechnungsfaktor
+              .col-sm-8
+                .input-group
+                  input(id = 'channelsettings-channel'+i+'-unitfactor-value', type = 'number', min = '0').form-control
+                  .input-group-btn
+                    button(class = 'channelsettings-unitfactor-info-button', type = 'button').btn.btn-default
+                      span.glyphicon.glyphicon-info-sign
+            .form-group
+              label.col-sm-4.control-label Berechnungs-Offset
+              .col-sm-8
+                .input-group
+                  input(id = 'channelsettings-channel'+i+'-unitoffset-value', type = 'number').form-control
+                  .input-group-btn
+                    button(class = 'channelsettings-unitoffset-info-button', type = 'button').btn.btn-default
+                      span.glyphicon.glyphicon-info-sign
+      - }
+      
+    .container.hidden#devicesettings-pane
+      .navbar.navbar-fixed-top.navbar-inverse
+        span.navbar-brand Einstellungen
+        div.cst-padding.pull-right
+          button(type = 'button')#devicesettings-nav-ok-button.btn.btn-default.navbar-btn Ok
+          button(type = 'button')#devicesettings-nav-cancel-button.btn.btn-default.navbar-btn Abbrechen  
+      .panel.panel-default
+        .panel-heading
+          span.cst-heading-label Geräteeinstellungen
+        .panel-body
+          form.form-horizontal
+            .form-group
+              label.col-sm-4.control-label Sendeintervall
+              .col-sm-8
+                .input-group
+                  input(id = 'devicesettings-sendinterval-value', type = 'number', min = '3000', max = '4294967295', step = '1').form-control
+                  .input-group-btn
+                    button(class = 'devicesettings-sendinterval-info-button', type = 'button').btn.btn-default
+                      span.glyphicon.glyphicon-info-sign
+            .form-group
+              label.col-sm-4.control-label Fehlerintervall
+              .col-sm-8
+                .input-group
+                  input(id = 'devicesettings-errorinterval-value', type = 'number', min = '4000', max = '4294967295', step = '1').form-control
+                  .input-group-btn
+                    button(class = 'devicesettings-errorinterval-info-button', type = 'button').btn.btn-default
+                      span.glyphicon.glyphicon-info-sign
+            .form-group
+              label.col-sm-4.control-label Fehlversuche
+              .col-sm-8
+                .input-group
+                  input(id = 'devicesettings-errorcount-value', type = 'number', min = '4', step = '1').form-control
+                  .input-group-btn
+                    button(class = 'devicesettings-errorcount-info-button', type = 'button').btn.btn-default
+                      span.glyphicon.glyphicon-info-sign
+            .form-group
+              .col-sm-4
+              .col-sm-8.col-xs-12
+                input(id = 'devicesettings-notifications-checkbox', type = 'checkbox', data-label-text = 'Benachrichtigungen', data-off-text = 'Nein', data-on-text = 'Ja').bs-switch.form-control
+                button(class = 'devicesettings-notifications-info-button', type = 'button').btn.btn-default
+                  span.glyphicon.glyphicon-info-sign
+            .form-group
+              label.col-sm-4.control-label Gerätemodell
+              .col-sm-8
+                .input-group
+                  select(disabled id = 'devicesettings-devicemodel-value').form-control
+                    option Arduino Uno
+                    option Arduino Mega
+                  .input-group-btn
+                    button(class = 'devicesettings-devicemodel-info-button', type = 'button').btn.btn-default
+                      span.glyphicon.glyphicon-info-sign
+            .form-group
+              label.col-sm-4.control-label Übertragungsmodul
+              .col-sm-8
+                .input-group
+                  select(disabled id = 'devicesettings-deviceshield-value').form-control
+                    option Ethernet Shield
+                    option GSM Shield
+                  .input-group-btn
+                    button(class = 'devicesettings-deviceshield-info-button', type = 'button').btn.btn-default
+                      span.glyphicon.glyphicon-info-sign
+            .form-group
+              label.col-sm-4.control-label GPRS APN
+              .col-sm-8
+                .input-group
+                  input(disabled id = 'devicesettings-gprsapn-value', type = 'text').form-control
+                  .input-group-btn
+                    button(class = 'devicesettings-gprsapn-info-button', type = 'button').btn.btn-default
+                      span.glyphicon.glyphicon-info-sign
+            .form-group
+              label.col-sm-4.control-label GPRS Login
+              .col-sm-8
+                .input-group
+                  input(disabled id = 'devicesettings-gprslogin-value', type = 'text').form-control
+                  .input-group-btn
+                    button(class = 'devicesettings-gprslogin-info-button', type = 'button').btn.btn-default
+                      span.glyphicon.glyphicon-info-sign
+            .form-group
+              label.col-sm-4.control-label GPRS Passwort
+              .col-sm-8
+                .input-group
+                  input(disabled id = 'devicesettings-gprspassword-value', type = 'text').form-control
+                  .input-group-btn
+                    button(class = 'devicesettings-gprspassword-info-button', type = 'button').btn.btn-default
+                      span.glyphicon.glyphicon-info-sign
+            .form-group
+              label.col-sm-4.control-label PIN Simkarte
+              .col-sm-8
+                .input-group
+                  input(disabled id = 'devicesettings-simpin-value', type = 'text').form-control
+                  .input-group-btn
+                    button(class = 'devicesettings-simpin-info-button', type = 'button').btn.btn-default
+                      span.glyphicon.glyphicon-info-sign
+            .form-group
+              label.col-sm-4.control-label Mac Adresse
+              .col-sm-8
+                .input-group
+                  input(disabled id = 'devicesettings-macadress-value', type = 'text').form-control
+                  .input-group-btn
+                    button(class = 'devicesettings-macadress-info-button', type = 'button').btn.btn-default
+                      span.glyphicon.glyphicon-info-sign
+            .form-group
+              .col-sm-4
+              .col-sm-8.col-xs-12
+                button(id = 'devicesettings-changekey-button', type = 'button').btn.btn-default
+                  span Schlüssel ändern/anzeigen
+                button(class = 'devicesettings-changekey-info-button', type = 'button').btn.btn-default
+                  span.glyphicon.glyphicon-info-sign
+            .form-group
+              .col-sm-4
+              .col-sm-8.col-xs-12
+                button(disabled id = 'devicesettings-showsketch-button', type = 'button').btn.btn-default
+                  span Sketch anzeigen
+                button(class = 'devicesettings-showsketch-info-button', type = 'button').btn.btn-default
+                  span.glyphicon.glyphicon-info-sign
+
+    .container.hidden#accountsettings-pane
+      .navbar.navbar-fixed-top.navbar-inverse
+        span.navbar-brand Einstellungen
+        div.cst-padding.pull-right
+          button(type = 'button')#accountsettings-nav-ok-button.btn.btn-default.navbar-btn Ok
+          button(type = 'button')#accountsettings-nav-cancel-button.btn.btn-default.navbar-btn Abbrechen  
+      .panel.panel-default
+        .panel-heading
+          span.cst-heading-label Accounteinstellungen
+        .panel-body
+          form.form-horizontal
+            .form-group
+              label.col-sm-4.control-label E-Mail Adresse
+              .col-sm-8
+                .input-group
+                  input(disabled id = 'accountsettings-email-value', type = 'email').form-control
+                  .input-group-btn
+                    button(disabled class = 'accountsettings-email-change-button', type = 'button').btn.btn-default
+                      span ändern
+                    button(class = 'accountsettings-email-info-button', type = 'button').btn.btn-default
+                      span.glyphicon.glyphicon-info-sign
+            .form-group
+              label.col-sm-4.control-label Passwort
+              .col-sm-8
+                .input-group
+                  input(disabled id = 'accountsettings-changepassword-value', type = 'password').form-control
+                  .input-group-btn
+                    button(disabled class = 'accountsettings-changepassword-change-button', type = 'button').btn.btn-default
+                      span ändern
+                    button(class = 'accountsettings-changepassword-info-button', type = 'button').btn.btn-default
+                      span.glyphicon.glyphicon-info-sign
+            .form-group
+              .col-sm-4
+              .col-sm-8.col-xs-12
+                button(disabled id = 'devicesettings-deleteaccount-button', type = 'button').btn.btn-default
+                  span Account löschen
+                button(class = 'devicesettings-deleteaccount-info-button', type = 'button').btn.btn-default
+                  span.glyphicon.glyphicon-info-sign
+        
+    //- SCRIPTS
+    script(src="https://code.jquery.com/jquery-2.1.4.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js", integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS", crossorigin="anonymous")
+    script(src="socket-io/socket.io-1.4.5.js")
+    script(src="bootstrap-switch/js/bootstrap-switch.min.js")
+    script(src="libs.js")
+    script(src="templates.js")
+    script(src="app.js")
+    script.
+      require('scripts/app');
+    //- SCRIPTS

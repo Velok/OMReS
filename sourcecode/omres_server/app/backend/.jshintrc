@@ -1,0 +1,6 @@
+{
+  "esnext": true,
+  "multistr": true,
+  "strict": true,
+  "loopfunc": true
+}
